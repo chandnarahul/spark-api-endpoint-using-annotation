@@ -26,19 +26,23 @@ public class ApiEndpoint {
         Reflections reflections = new Reflections("com.x.yourapp");
         Set<Class<?>> services = reflections.getTypesAnnotatedWith(SparkApi.class);
         services.forEach(service -> {
-            try {
-                LOGGER.info("Registering Api [" + service.getName() + "]");
-                Arrays.stream(service.getMethods()).forEach(method -> {
-                    if (method.isAnnotationPresent(Post.class)) {
-                        processPost(method);
-                    } else if (method.isAnnotationPresent(Get.class)) {
-                        processGet(method);
-                    }
-                });
-            } catch (Exception e) {
-                LOGGER.error("registerEndpoints ", e);
-            }
+            processEndpoints(service);
         });
+    }
+
+    private void processEndpoints(Class<?> service) {
+        try {
+            LOGGER.info("Registering Api [" + service.getName() + "]");
+            Arrays.stream(service.getMethods()).forEach(method -> {
+                if (method.isAnnotationPresent(Post.class)) {
+                    processPost(method);
+                } else if (method.isAnnotationPresent(Get.class)) {
+                    processGet(method);
+                }
+            });
+        } catch (Exception e) {
+            LOGGER.error("registerEndpoints ", e);
+        }
     }
 
     private void processGet(Method method) {
