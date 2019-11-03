@@ -7,3 +7,5 @@ It covers how to create annotations and scan them during runtime to perform desi
 Medium : https://medium.com/@raulchandna/developing-spark-java-api-endpoints-using-annotations-9b764c4c2f10
 
 Zensar : https://zenloungeplus.zensar.com/group/guest/blogs/-/blogs/developing-spark-java-api-endpoints-using-annotatio-1
+
+*Some dependencies are outdated please make sure you update all dependencies before using this project*
